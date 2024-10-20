@@ -1,0 +1,11 @@
+*vim-puml*    Plugin for generating PlantUML diagrams
+
+NAME
+    puml.vim - Generate and view PlantUML diagrams within Vim.
+
+COMMANDS
+    :PUMLGenerate
+        Generates a PlantUML diagram from the current `.puml` file.
+
+    :PUMLOpen
+        Opens the generated diagram in the default browser.
