@@ -1,11 +1,17 @@
 # vim-puml
 
-A Vim plugin for generating PlantUML diagrams from `.puml` files and opening them in your web browser.
+A Vim / Neovim plugin for generating PlantUML diagrams from `.puml` files and opening them in your web browser.
 
 ## Features
 
 - Generate PlantUML diagrams from the current buffer.
 - Open the generated diagram in the default web browser.
+- Share the PlantUML diagram using [PlantUML Server](https://www.plantuml.com/plantuml/uml/).
+
+## Requirements
+
+-   [node-plantuml](https://github.com/markushedvall/node-plantuml) must be installed on your system.
+-   Ensure that the command `puml` is accessible from your terminal.
 
 ## Installation
 
@@ -17,25 +23,33 @@ Add the following line to your `.vimrc` or `init.vim`:
 ```vim
 Plug 'adirizka7/vim-puml'
 ``` 
+or `init.lua`:
+```lua
+Plug('adirizka7/vim-puml')
+```
 
-Then run the following command in Vim:
+Then run the following command:
 ```vim
-:PlugInstall`
+:PlugInstall
 ```
 
 ## Usage
 
 1.  Open a `.puml` file in Vim.
     
-2.  To generate the PlantUML diagram, run:
+2.  Generate the PlantUML diagram.
 	```
 	:PUMLGenerate
 	```
     
-4.  To open the generated diagram in your browser, run:
+3.  Open the generated diagram in your browser.
     ```
     :PUMLOpen
     ``` 
+4. Share the PlantUML diagram. This will copy the share url to your clipboard (the `+` register).
+	```
+	:PUMLShare
+	```
 
 ### Example
 
@@ -51,11 +65,6 @@ Bob -> Alice: Hi!
 1.  Save the file as `example.puml`.
 2.  Run `:PUMLGenerate`.
 3.  Then, run `:PUMLOpen` to view the diagram.
-
-## Requirements
-
--   [node-plantuml](https://github.com/markushedvall/node-plantuml) must be installed on your system.
--   Ensure that the command `puml` is accessible from your terminal.
 
 ## Contributing
 

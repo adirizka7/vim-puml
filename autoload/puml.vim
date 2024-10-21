@@ -73,3 +73,32 @@ function! puml#Open()
     redraw!
     echo "Generated PUML is opened in browser!"
 endfunction
+
+function! puml#Share()
+    let puml_base_url = 'https://www.plantuml.com/plantuml/uml/'
+
+    " Get the current buffer's file path
+    let current_file = expand('%:p')
+
+    " Command to open the generated HTML in the browser
+    let cmd = 'puml encode ' . shellescape(current_file)
+
+    " Run the command and capture its output
+    let output = systemlist(cmd)
+
+    " If the command fails, populate the quickfix list and open it
+    if v:shell_error != 0
+        call setqflist([], 'r', {'title': 'Error encoding PUML', 'lines': output})
+        copen
+        return
+    endif
+
+    let encoded_result = output[0]
+
+    " Copy the full URL to the clipboard
+    let full_url = puml_base_url . encoded_result
+    call setreg('+', full_url)
+
+    " Notify the user
+    echo "Copied to clipboard!"
+endfunction
